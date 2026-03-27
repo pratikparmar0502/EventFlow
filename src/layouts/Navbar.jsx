@@ -12,9 +12,15 @@ import MenuItem from "@mui/material/MenuItem";
 import EventAvailableTwoToneIcon from "@mui/icons-material/EventAvailableTwoTone";
 import Stack from "@mui/material/Stack";
 import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const pages = ["Home", "Blog", "Contact Us", "About Us"];
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact Us", path: "/contact" },
+    { name: "About Us", path: "/about" },
+  ];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -30,7 +36,8 @@ const Navbar = () => {
     <>
       <AppBar
         position="sticky"
-        sx={{ bgcolor: "#F5F5F5", color: "#111827" }}
+        color="inherit"
+        sx={{ background: "background.default" }}
         elevation={0}
       >
         <Container maxWidth="xl">
@@ -40,15 +47,15 @@ const Navbar = () => {
                 display: { xs: "none", md: "flex" },
                 mr: 1,
                 fontSize: "2rem",
-                color: "var(--primary-color)",
+                color: "primary.main",
                 filter: "drop-shadow(0px 0px 4px rgba(59, 130, 246, 0.5))",
               }}
             />
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -60,7 +67,6 @@ const Navbar = () => {
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                fontFamily: "var(--primary-font)",
               }}
             >
               EventFlow
@@ -95,9 +101,11 @@ const Navbar = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {navItems.map((page) => (
                   <MenuItem
-                    key={page}
+                    key={page.name}
+                    component={Link}
+                    to={page.path}
                     onClick={handleCloseNavMenu}
                     sx={{ width: "150px" }}
                   >
@@ -106,11 +114,10 @@ const Navbar = () => {
                         textAlign: "center",
                         fontWeight: 600,
                         my: 0.5,
-                        fontFamily: "var(--primary-font)",
                         fontSize: "16px",
                       }}
                     >
-                      {page}
+                      {page.name}
                     </Typography>
                   </MenuItem>
                 ))}
@@ -127,7 +134,6 @@ const Navbar = () => {
                     variant="outlined"
                     sx={{
                       textTransform: "capitalize",
-                      fontFamily: "var(--primary-font)",
                       borderRadius: "8px",
                       fontWeight: 600,
                       fontSize: "16px",
@@ -140,7 +146,6 @@ const Navbar = () => {
                     variant="contained"
                     sx={{
                       textTransform: "capitalize",
-                      fontFamily: "var(--primary-font)",
                       borderRadius: "8px",
                       fontWeight: 600,
                       fontSize: "16px",
@@ -163,8 +168,8 @@ const Navbar = () => {
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
@@ -178,7 +183,6 @@ const Navbar = () => {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 width: "fit-content",
-                fontFamily: "var(--primary-font)",
               }}
             >
               EventFlow
@@ -190,9 +194,11 @@ const Navbar = () => {
                 justifyContent: "center",
               }}
             >
-              {pages.map((page) => (
+              {navItems.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
+                  component={Link}
+                  to={page.path}
                   onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,
@@ -202,7 +208,6 @@ const Navbar = () => {
                     fontWeight: 600,
                     padding: "7px 14px",
                     textTransform: "capitalize",
-                    fontFamily: "var(--primary-font)",
                     // position: "relative",
                     // "&::after": {
                     //   content: '""',
@@ -216,7 +221,7 @@ const Navbar = () => {
                     //   transition: "0.3s ease-in-out",
                     // },
                     ":hover": {
-                      color: "var(--primary-color)",
+                      color: "primary.main",
                       backgroundColor: "transparent",
                       transition: "width 0.4s ease-in-out",
                     },
@@ -225,7 +230,7 @@ const Navbar = () => {
                     // },
                   }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>
@@ -240,7 +245,6 @@ const Navbar = () => {
                 variant="outlined"
                 sx={{
                   textTransform: "capitalize",
-                  fontFamily: "var(--primary-font)",
                   borderRadius: "8px",
                   fontWeight: 600,
                   fontSize: "16px",
@@ -252,7 +256,6 @@ const Navbar = () => {
                 variant="contained"
                 sx={{
                   textTransform: "capitalize",
-                  fontFamily: "var(--primary-font)",
                   borderRadius: "8px",
                   fontWeight: 600,
                   fontSize: "16px",
