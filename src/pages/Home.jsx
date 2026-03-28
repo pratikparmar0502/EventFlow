@@ -3,17 +3,63 @@ import React from "react";
 import heroImg from "../assets/images/hero_img.jpg";
 import SearchIcon from "@mui/icons-material/Search";
 import { InputBase } from "@mui/material";
+import GridViewIcon from "@mui/icons-material/GridView";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import PublicIcon from "@mui/icons-material/Public";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import PeopleIcon from "@mui/icons-material/People";
+import AppsIcon from "@mui/icons-material/Apps";
+import { useState } from "react";
 
 const Home = () => {
-  const chipEvents = [
-    "All",
-    "Tech",
-    "Music",
-    "Sports",
-    "Food",
-    "Gaming",
-    "Networking",
+  const [toggleChip, setToggleChip] = useState("All");
+
+  const categoryChips = [
+    {
+      label: "All",
+      icon: <AppsIcon />,
+      bgColor: "rgba(255, 255, 255, 0.4)",
+      color: "white",
+    },
+    {
+      label: "Tech",
+      icon: <GridViewIcon />,
+      bgColor: "#3b82f6",
+      color: "white",
+    },
+    {
+      label: "Music",
+      icon: <MusicNoteIcon />,
+      bgColor: "#f97316",
+      color: "white",
+    },
+    {
+      label: "Sports",
+      icon: <PublicIcon />,
+      bgColor: "#1e3a8a",
+      color: "white",
+    },
+    {
+      label: "Food",
+      icon: <RestaurantIcon />,
+      bgColor: "#10b981",
+      color: "white",
+    },
+    {
+      label: "Gaming",
+      icon: <SportsEsportsIcon />,
+      bgColor: "#8b5cf6",
+      color: "white",
+    },
+    {
+      label: "Networking",
+      icon: <PeopleIcon />,
+      bgColor: "#ef4444",
+      color: "white",
+    },
   ];
+
   return (
     <>
       <Box
@@ -57,7 +103,7 @@ const Home = () => {
               fontSize: { xs: "1.1rem", md: "1.2rem" },
             }}
           >
-            Find and book the best experience near you - concerts, conferneces,
+            Find and book the best experience near you - concerts, conferences,
             games and more.
           </Typography>
 
@@ -105,21 +151,37 @@ const Home = () => {
               scrollbarWidth: "none",
             }}
           >
-            {chipEvents.map((item) => (
+            {categoryChips.map((item) => (
               <Chip
-                label={item}
+                onClick={() => setToggleChip(item.label)}
+                key={item.label}
+                label={item.label}
+                icon={item.icon}
                 variant="outlined"
                 sx={{
-                  backgroundColor: "background.default",
+                  backgroundColor:
+                    toggleChip === item.label
+                      ? `${item.bgColor} !important`
+                      : "rgba(255, 255, 255, 0.1)",
+                  color: "#F5F5F5",
                   fontSize: "1rem",
                   fontWeight: "600",
-                  padding: "18px 10px",
-                  borderRadius: "50px",
+                  padding: "20px 10px",
+                  borderRadius: "12px",
                   flexShrink: 0,
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease-in-out",
+                  backdropFilter: "blur(4px)",
                   "&:hover": {
-                    backgroundColor: "primary.main",
-                    color: "white",
+                    backgroundColor: ` ${item.bgColor} !important`,
+                    transform: "scale(1.05)",
+                    opacity: 1,
                   },
+                  "& .MuiChip-icon": {
+                    color: "inherit",
+                  },
+                  userSelect: "none",
                 }}
               ></Chip>
             ))}
