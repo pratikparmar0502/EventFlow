@@ -7,9 +7,7 @@ import {
   CardMedia,
   Chip,
   Container,
-  Divider,
   Grid,
-  IconButton,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -19,6 +17,8 @@ import card_3 from "../assets/images/card-3.jpg";
 import card_4 from "../assets/images/card-4.jpg";
 import card_5 from "../assets/images/card-5.jpg";
 import card_6 from "../assets/images/card-6.jpg";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const eventData = [
   {
@@ -99,11 +99,30 @@ const EventCards = () => {
   return (
     <>
       <Container sx={{ my: 8, px: 2 }} maxWidth="lg">
-        <Typography>Trending Events</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            letterSpacing: "0.7px",
+            fontSize: {
+              xs: "2.5rem",
+              sm: "3rem",
+              md: "3.5rem",
+            },
+            textAlign: "center",
+            py: 2,
+            background: "linear-gradient(45deg, #111827, #3b82f6)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          Trending Events
+        </Typography>
         <Grid
           container
           spacing={3}
-          sx={{ justifyContent: "center", alignItems: "center" }}
+          sx={{ justifyContent: "center", alignItems: "center", py: 8 }}
         >
           {eventData.map((item) => (
             <Grid item xs={12} sm={6} md={4} key={item.id}>
@@ -116,16 +135,25 @@ const EventCards = () => {
                   borderRadius: 4,
                   boxShadow: 3,
                   position: "relative",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "translateY(-7px)",
+                    boxShadow: 6,
+                  },
                 }}
               >
                 <Chip
                   label={item.category}
-                  bgcolor={item.bgColor}
                   sx={{
+                    zIndex: 1,
                     position: "absolute",
-                    bgcolor: "#F5F5F5",
+                    bgcolor: item.bgColor,
+                    color: "#F5F5F5",
                     borderRadius: 2,
-                    p: "5px 5px",
+                    px: 1.5,
+                    py: 0.5,
                     top: 16,
                     left: 16,
                     fontWeight: 700,
@@ -133,25 +161,90 @@ const EventCards = () => {
                 />
 
                 <CardMedia
-                  sx={{ height: 240, width: 340, objectFit: "cover" }}
+                  component="img"
+                  sx={{
+                    height: 240,
+                    width: "100%",
+                    objectFit: "cover",
+                    overflow: "hidden",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
                   image={item.image}
-                  title={item.title}
+                  alt={item.title}
                 />
-                <CardContent>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <CardContent
+                  sx={{ flexGrow: 1, px: 2.5, py: 2, overflow: "hidden" }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      fontSize: "1.2rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#6b7280",
+                      my: 1,
+                      lineHeight: 1.5,
+                    }}
+                  >
                     {item.description}
                   </Typography>
-                  <Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 1,
+                          pt: "5px",
+                        }}
+                      >
+                        <DateRangeIcon sx={{ color: "primary.main" }} />
+                        <Typography size="small" sx={{ color: "#6b7280" }}>
+                          {item.date}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 1,
+                          pt: "5px",
+                        }}
+                      >
+                        <LocationOnIcon sx={{ color: "primary.main" }} />
+                        <Typography size="small" sx={{ color: "#6b7280" }}>
+                          {item.location}
+                        </Typography>
+                      </Box>
+                    </Box>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: "bold" }}
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: "1.6rem",
+                        px: 2,
+                        color: "primary.main",
+                      }}
                       size="small"
-                      color="primary"
                     >
                       {item.price}
                     </Typography>
-                    <Typography size="small">{item.location}</Typography>
-                    <Typography size="small">{item.date}</Typography>
                   </Box>
                 </CardContent>
                 <CardActions
@@ -160,17 +253,24 @@ const EventCards = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     p: 2,
+                    gap: 1,
                   }}
                 >
-                  <Divider sx={{ my: 1 }} />
-
                   <Button
                     variant="outlined"
                     size="small"
                     sx={{
-                      borderRadius: 5,
-                      ml: 1,
-                      p: "7px 18px",
+                      borderRadius: 3,
+                      p: "10px 18px",
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      width: "100%",
+                      transition: "all 0.4s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        backgroundColor: "primary.main",
+                        color: "#fff",
+                      },
                     }}
                   >
                     Details
@@ -180,9 +280,14 @@ const EventCards = () => {
                     size="small"
                     color="primary"
                     sx={{
-                      borderRadius: 5,
-                      ml: 1,
-                      p: "7px 18px",
+                      borderRadius: 3,
+                      p: "10px 18px",
+                      width: "100%",
+                      backgroundColor: "primary.main",
+                      transition: "all 0.4s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                      },
                     }}
                   >
                     Book Now
