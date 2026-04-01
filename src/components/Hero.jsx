@@ -68,7 +68,7 @@ const Hero = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          minHeight: "80vh",
+          minHeight: "90vh",
           position: "relative",
           color: "background.default",
           display: "flex",
