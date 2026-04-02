@@ -261,10 +261,12 @@ const EventCards = () => {
                     size="small"
                     sx={{
                       borderRadius: 3,
-                      p: "10px 18px",
+                      p: 1,
                       color: "primary.main",
                       borderColor: "primary.main",
                       width: "100%",
+                      fontSize: "1rem",
+                      textTransform: "capitalize",
                       transition: "all 0.4s ease-in-out",
                       "&:hover": {
                         transform: "scale(1.05)",
@@ -281,8 +283,11 @@ const EventCards = () => {
                     color="primary"
                     sx={{
                       borderRadius: 3,
-                      p: "10px 18px",
+                      p: 1,
+                      py: 1.1,
                       width: "100%",
+                      fontSize: "1rem",
+                      textTransform: "capitalize",
                       backgroundColor: "primary.main",
                       transition: "all 0.4s ease-in-out",
                       "&:hover": {
